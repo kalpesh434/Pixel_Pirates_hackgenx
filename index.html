@@ -117,7 +117,7 @@
 
     <div id="dashboard" class="hidden">
         <nav class="navbar">
-            <h2>Budget Allocation Dashboard</h2>
+            <h2>Government Portal</h2>
             <button onclick="logout()" class="logout-btn">Logout</button>
         </nav>
         <div class="dashboard-content">
@@ -429,7 +429,7 @@
     <!-- Public User Dashboard -->
     <div id="public-dashboard" class="hidden">
         <nav class="navbar">
-            <h2>Public Budget Visualization</h2>
+            <h2>Public Portal</h2>
             <div class="nav-actions">
                 <button onclick="logout()" class="logout-btn">Logout</button>
             </div>
@@ -446,6 +446,12 @@
                     <li onclick="showPublicSection('public-comparison')">
                         <i class="fas fa-balance-scale"></i> Budget Comparison
                     </li>
+                    <li onclick="showPublicSection('public-projects')">
+                        <i class="fas fa-project-diagram"></i> Ongoing Projects
+                    </li>
+                    <li onclick="showPublicSection('public-reports')">
+                        <i class="fas fa-file-alt"></i> Reports
+                    </li>
                     <li onclick="showPublicSection('public-feedback')" id="public-feedback-nav">
                         <i class="fas fa-comment-alt"></i> Submit Feedback
                     </li>
@@ -460,121 +466,46 @@
                         <div class="public-budget-year">Fiscal Year 2023-24</div>
                     </div>
                     
-                    <!-- New Government Revenue Section -->
-                    <div class="government-revenue">
-                        <h3>Government Revenue</h3>
-                        
-                        <div class="view-tabs">
-                            <div class="tab active" onclick="switchRevenueView('chart')">Chart View</div>
-                            <div class="tab" onclick="switchRevenueView('table')">Table View</div>
-                        </div>
-                        
-                        <div class="year-selector revenue-year-selector">
-                            <label for="revenue-year">Fiscal Year:</label>
-                            <select id="revenue-year" class="select-input" onchange="updateRevenueData()">
-                                <option value="2024-2025" selected>2024-2025</option>
-                                <option value="2023-2024">2023-2024</option>
-                                <option value="2022-2023">2022-2023</option>
-                                <option value="2021-2022">2021-2022</option>
-                                <option value="2020-2021">2020-2021</option>
-                            </select>
-                        </div>
-                        
-                        <div id="revenue-chart-view" class="revenue-view">
-                            <canvas id="revenueChart"></canvas>
-                        </div>
-                        
-                        <div id="revenue-table-view" class="revenue-view hidden">
-                            <div class="revenue-summary-boxes">
-                                <div class="revenue-box">
-                                    <h4>Total Budget</h4>
-                                    <div class="revenue-amount" id="total-budget-amount">₹106.87 Lakh Crore</div>
-                                    <div class="revenue-change" id="total-budget-change">+9.6% from previous year</div>
-                                </div>
-                                <div class="revenue-box">
-                                    <h4>Tax to Non-Tax Ratio</h4>
-                                    <div class="revenue-amount" id="tax-nontax-ratio">73:27</div>
-                                    <div class="revenue-change" id="tax-dependency-change">+2.1% tax dependency</div>
-                                </div>
-                                <div class="revenue-box">
-                                    <h4>GST Collection</h4>
-                                    <div class="revenue-amount" id="gst-collection">₹17.32 Lakh Crore</div>
-                                    <div class="revenue-change" id="gst-growth">+10.4% growth</div>
-                                </div>
-                            </div>
-                            
-                            <div class="revenue-sources-table">
-                                <h4>Revenue Sources 2024-2025</h4>
-                                <table class="data-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Revenue Source</th>
-                                            <th>Amount (₹ Lakh Crore)</th>
-                                            <th>Percentage</th>
-                                            <th>YoY Change</th>
-                                            <th>Details</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="revenue-sources-body">
-                                        <tr>
-                                            <td><span class="source-dot direct"></span> Direct Taxes</td>
-                                            <td>₹32.20 Lakh Cr</td>
-                                            <td>30.1%</td>
-                                            <td class="positive-change">+12.2%</td>
-                                            <td><a href="#" class="details-link"><i class="fas fa-chevron-right"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="source-dot indirect"></span> Indirect Taxes</td>
-                                            <td>₹29.80 Lakh Cr</td>
-                                            <td>27.9%</td>
-                                            <td class="positive-change">+2.4%</td>
-                                            <td><a href="#" class="details-link"><i class="fas fa-chevron-right"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="source-dot nontax"></span> Non-Tax Revenue</td>
-                                            <td>₹8.50 Lakh Cr</td>
-                                            <td>7.9%</td>
-                                            <td class="negative-change">-9.6%</td>
-                                            <td><a href="#" class="details-link"><i class="fas fa-chevron-right"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="source-dot borrowings"></span> Borrowings & Liabilities</td>
-                                            <td>₹27.70 Lakh Cr</td>
-                                            <td>25.9%</td>
-                                            <td class="positive-change">+4.1%</td>
-                                            <td><a href="#" class="details-link"><i class="fas fa-chevron-right"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="source-dot recovery"></span> Recovery of Loans</td>
-                                            <td>₹1.40 Lakh Cr</td>
-                                            <td>1.3%</td>
-                                            <td class="positive-change">+7.7%</td>
-                                            <td><a href="#" class="details-link"><i class="fas fa-chevron-right"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="source-dot capital"></span> Other Capital Receipts</td>
-                                            <td>₹7.40 Lakh Cr</td>
-                                            <td>6.9%</td>
-                                            <td class="positive-change">+51.0%</td>
-                                            <td><a href="#" class="details-link"><i class="fas fa-chevron-right"></i></a></td>
-                                        </tr>
-                                        <tr class="total-row">
-                                            <td>Total</td>
-                                            <td>₹107.00 Lakh Cr</td>
-                                            <td>100%</td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="public-sector-allocation">
+                    <div class="sector-allocation">
                         <h3>Sector-wise Allocation</h3>
-                        <div class="public-sector-cards">
-                            <!-- Sector cards will be populated dynamically -->
+                        <div class="sector-cards">
+                            <!-- Adding predefined sector cards similar to government dashboard -->
+                            <div class="sector-card">
+                                <i class="fas fa-hospital"></i>
+                                <h4>Healthcare</h4>
+                                <div class="sector-amount">₹50,000 Cr</div>
+                                <div class="sector-percentage">22.22%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-road"></i>
+                                <h4>Infrastructure</h4>
+                                <div class="sector-amount">₹45,000 Cr</div>
+                                <div class="sector-percentage">20%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h4>Education</h4>
+                                <div class="sector-amount">₹40,000 Cr</div>
+                                <div class="sector-percentage">17.78%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h4>Defense</h4>
+                                <div class="sector-amount">₹35,000 Cr</div>
+                                <div class="sector-percentage">15.56%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-tractor"></i>
+                                <h4>Agriculture</h4>
+                                <div class="sector-amount">₹30,000 Cr</div>
+                                <div class="sector-percentage">13.33%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-hands-helping"></i>
+                                <h4>Social Welfare</h4>
+                                <div class="sector-amount">₹25,000 Cr</div>
+                                <div class="sector-percentage">11.11%</div>
+                            </div>
                         </div>
                     </div>
                     
@@ -662,6 +593,136 @@
                                     <!-- Comparison data will be added here -->
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Public Dashboard Ongoing Projects Section -->
+                <div id="public-projects" class="section hidden">
+                    <h3>Ongoing Projects Across India</h3>
+                    
+                    <div class="projects-filters">
+                        <div class="filter-group">
+                            <label for="project-category">Category:</label>
+                            <select id="project-category" class="select-input" onchange="filterProjects()">
+                                <option value="all" selected>All Projects</option>
+                                <option value="mega">Mega Projects</option>
+                                <option value="minor">Minor Projects</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="project-status">Status:</label>
+                            <select id="project-status" class="select-input" onchange="filterProjects()">
+                                <option value="all" selected>All Status</option>
+                                <option value="planning">Planning</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                                <option value="delayed">Delayed</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="project-region">Region:</label>
+                            <select id="project-region" class="select-input" onchange="filterProjects()">
+                                <option value="all" selected>All India</option>
+                                <option value="north">North India</option>
+                                <option value="south">South India</option>
+                                <option value="east">East India</option>
+                                <option value="west">West India</option>
+                                <option value="central">Central India</option>
+                                <option value="northeast">Northeast India</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="projects-table-wrapper">
+                        <table class="projects-table">
+                            <thead>
+                                <tr>
+                                    <th>Project Name</th>
+                                    <th>Budget (₹ Cr)</th>
+                                    <th>Status</th>
+                                    <th>Completion</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="projects-table-body">
+                                <!-- Project rows will be added dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="project-details-modal" class="modal hidden">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 id="project-modal-title">Project Details</h4>
+                                <span class="close-modal" onclick="closeProjectDetails()">&times;</span>
+                            </div>
+                            <div class="modal-body" id="project-modal-body">
+                                <!-- Project details will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Public Dashboard Reports Section -->
+                <div id="public-reports" class="section hidden">
+                    <h3>Budget Reports and Documents</h3>
+                    
+                    <div class="reports-container">
+                        <div class="report-box">
+                            <div class="report-icon">
+                                <i class="fas fa-file-invoice"></i>
+                            </div>
+                            <h4>Finance Bill</h4>
+                            <p>Legislative proposal for changes in taxation and financial regulations</p>
+                            <a href="./pdf folder/Finance_Bill.pdf" class="report-btn" download>
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                            <a href="./pdf folder/Finance_Bill.pdf" class="report-btn view-btn" target="_blank">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                        </div>
+                        
+                        <div class="report-box">
+                            <div class="report-icon">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <h4>Annual Financial Statement</h4>
+                            <p>Detailed statement of estimated receipts and expenditures</p>
+                            <a href="./pdf folder/annual financial statement.pdf" class="report-btn" download>
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                            <a href="./pdf folder/annual financial statement.pdf" class="report-btn view-btn" target="_blank">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                        </div>
+                        
+                        <div class="report-box">
+                            <div class="report-icon">
+                                <i class="fas fa-microphone-alt"></i>
+                            </div>
+                            <h4>Budget Speech</h4>
+                            <p>Complete transcript of the Finance Minister's budget presentation</p>
+                            <a href="./pdf folder/Budget_Speech.pdf" class="report-btn" download>
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                            <a href="./pdf folder/Budget_Speech.pdf" class="report-btn view-btn" target="_blank">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                        </div>
+                        
+                        <div class="report-box">
+                            <div class="report-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h4>Budget Highlights</h4>
+                            <p>Key points and major announcements from the current budget</p>
+                            <a href="./pdf folder/budget highlights.pdf" class="report-btn" download>
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                            <a href="./pdf folder/budget highlights.pdf" class="report-btn view-btn" target="_blank">
+                                <i class="fas fa-eye"></i> View
+                            </a>
                         </div>
                     </div>
                 </div>
