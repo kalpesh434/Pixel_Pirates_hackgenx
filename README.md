@@ -54,21 +54,10 @@ After initializing sample data, you can use these credentials:
 - Mobile: 9876543211
 - Password: user123
 
-## MongoDB Database Structure
-
-- **Database Name:** budgetAllocationSystem
-- **Collections:**
-  - users - User accounts for both government and public users
-  - budgets - Budget allocation data for different fiscal years
-  - sectors - Details about different sectors receiving budget allocations
-  - feedback - Public feedback on budget allocations
-  - projects - Ongoing government projects across different sectors
-  - taxRecommendations - Tax optimization recommendations
-
 ## Technical Details
 
 - Frontend: HTML, CSS, JavaScript
-- Backend: Node.js, Express
+- Backend: Node.js, python
 - Database: MongoDB
 - Charts: Chart.js
 
