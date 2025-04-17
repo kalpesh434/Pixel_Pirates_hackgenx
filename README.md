@@ -1,38 +1,79 @@
-# Budget Allocation with Disaster Fund Predictor
+# Budget Allocation System with MongoDB Integration
 
-This project includes a budget allocation dashboard with an AI-powered disaster fund predictor.
-
-## Setup Instructions
-
-### Step 1: Install Python Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### Step 2: Start the Python Flask Server
-```bash
-python app.py
-```
-This will start the server at http://localhost:5000
-
-### Step 3: Open the Application
-After starting the server, open http://localhost:5000 in your browser.
+This application is a Budget Allocation System that helps governments and citizens visualize, analyze, and optimize budget allocations across various sectors.
 
 ## Features
-- Budget allocation dashboard
-- AI-powered disaster fund prediction
-- Budget adjustment calculations
+
+- Interactive dashboards for both government officials and public users
+- Budget visualization and analysis tools
+- Disaster fund prediction
 - Tax optimization recommendations
-- Voting analysis
+- Public feedback collection and analysis
+- Project tracking and filtering
 
-## Disaster Fund Predictor
-The disaster fund predictor uses a machine learning model to estimate required funds based on:
-1. Disaster severity (scale of 1-10)
-2. Estimated damage (in ₹ Crores)
+## MongoDB Integration
 
-The model then calculates budget adjustments across different sectors to accommodate the disaster response.
+This application now supports MongoDB for data persistence. All data including users, budgets, feedback, and projects are stored in MongoDB.
+
+### Setup Instructions
+
+1. Make sure MongoDB is installed and running on your system
+   - MongoDB should be running at `mongodb://localhost:27017`
+
+2. Install required dependencies:
+   ```
+   npm install
+   ```
+
+3. Initialize sample data (optional):
+   ```
+   node init-data.js
+   ```
+
+4. Start the server:
+   ```
+   npm start
+   ```
+
+5. Access the application:
+   ```
+   http://localhost:3000
+   ```
+
+### Login Credentials
+
+After initializing sample data, you can use these credentials:
+
+**Government User:**
+- Email: admin@gov.in
+- Mobile: 9876543210
+- Password: admin123
+
+**Public User:**
+- Email: user@example.com
+- Mobile: 9876543211
+- Password: user123
+
+## MongoDB Database Structure
+
+- **Database Name:** budgetAllocationSystem
+- **Collections:**
+  - users - User accounts for both government and public users
+  - budgets - Budget allocation data for different fiscal years
+  - sectors - Details about different sectors receiving budget allocations
+  - feedback - Public feedback on budget allocations
+  - projects - Ongoing government projects across different sectors
+  - taxRecommendations - Tax optimization recommendations
 
 ## Technical Details
+
 - Frontend: HTML, CSS, JavaScript
-- Backend: Python, Flask
-- AI Model: DisasterFundModel from disaster_model.py 
+- Backend: Node.js, Express
+- Database: MongoDB
+- Charts: Chart.js
+
+## Development
+
+- To modify MongoDB connection settings, edit `db.js`
+- API endpoints are defined in `server.js`
+- Sample data for initialization is in `init-data.js` 
